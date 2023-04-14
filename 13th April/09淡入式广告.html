@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        div{
+            width: 300px;
+            height: 200px;
+            background: url(../1804282cf13c44711cf07ef6d23156fb_2308532683745949632.jpg) no-repeat ;
+            position: fixed;
+            right: 0;
+            bottom: -200px;
+            background-size: cover;
+        }
+        span{
+            width: 30px;
+            height: 30px;
+            float: right;
+            text-align: center;
+            border-radius: 50%;
+            background-color: paleturquoise;
+            line-height: 30px;
+            font-size: 16px;
+        }
+        span:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>X</span>
+    </div>
+    <script>
+        //获取元素
+        var div=document.querySelector('div');
+        var span=document.querySelector('span');
+        //设置定时起
+        var timer=setInterval(moveAD,10)
+        //定义函数功能让div向上移动
+        function moveAD(){
+            var div_bottom=parseInt(getStyle(div).bottom);
+            if(div_bottom !=0){
+                div.style.bottom=div_bottom+1+'px';
+            }else{
+                clearInterval(timer);
+            }
+        }
+        //设置广告被关闭的效果
+        span.onclick=function(){
+            div.style.display="none";
+        }
+
+        //定义函数获取内部样式表对象
+        function getStyle(ele){
+            if(window.getComputedStyle == undefined){
+                return ele.currentStyle;
+            }else{
+                return window.getComputedStyle(ele,null);
+            }
+        }
+    </script>
+</body>
+</html>

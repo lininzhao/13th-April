@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #red{
+            width: 300px;
+            height: 300px;
+            background-color: indianred;
+            border-radius: 50%;
+        }
+        #blue{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            border-radius: 50%;
+        }
+        #pink{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+        div{
+            margin: 50px auto;
+            padding-top: 0.1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="red">
+        <div id="blue">
+            <div id="pink"></div>
+        </div>
+    </div>
+    <script>
+        var red=document.getElementById('red');
+        var blue=document.getElementById('blue');
+        var pink=document.getElementById('pink');
+
+        red.addEventListener('click',function(){
+            console.log('red');
+        },false);
+        blue.addEventListener('click',function(e){
+            e=e||window.event();
+            e.stopPropagation();
+            console.log('blue');
+        },false);
+        pink.addEventListener('click',function(e){
+            e=e||window.event;
+            e.stopPropagation();
+            console.log('pink');
+        },false);
+
+        //阻断事件冒泡兼容写法
+        e.stopPropagation==undefined ?e.cancleBuble=true:e.stopProgation();
+
+    </script>
+</body>
+</html>

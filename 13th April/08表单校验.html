@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #usernameInfo,#passwordInfo{
+            color: pink;
+            font-size: 14px;
+            font-style: italic;
+        }
+        body{
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <h2>表单校验</h2>
+<form action="">
+    <table>
+        <tr>
+            <td>用户名</td>
+            <td> <input type="text" id="userName" name="userName"></td>
+            <td id="usernameInfo"></td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td> <input type="password" id="password" name="password"></td>
+            <td id="passwordInfo"></td>
+        </tr>
+        <tr>
+            <td> <button>提交</button></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+    <script>
+        var userName=document.getElementById('userName');
+        var password=document.getElementById('password');
+        var usernameInfo=document.getElementById('usernameInfo');
+        var passwordInfo=document.getElementById('passwordInfo');
+        var form=document.querySelector('form');
+
+        userName.onfocus=function(){
+            usernameInfo.innerHTML='用户名必须为admition';
+            username.value='';
+        };
+        password.onfocus=function(){
+            passwordInfo.innerHTML='密码必须为123456';
+            password.value='';
+        };
+        //失去焦点时验证
+        userName.onblur=checkUsername;
+        password.onblur=checkPassword;
+
+        function checkUsername(){
+            var user=userName.value.toLowerCase();
+            if(user==''){
+                usernameInfo.innerHTML='用户名不能为空' ;
+                return false;
+            }
+            if(user=='admition'){
+                usernameInfo.innerHTML='correct';
+                return true;
+            }else{
+                usernameInfo.innerHTML='wrong';
+                return false;
+            }
+        }
+        //  验证密码是否正确
+        function checkPassword(){
+            var str=password.value.toLowerCase();
+            //验证是否为空
+            if(str=''){
+                passwordInfo.innerHTML='密码不能为空';
+                return false;
+            }
+            if(str=='123456'){
+                passwordInfo.innerHTML='correct';
+                return true;
+            }else{
+                passwordInfo.innerHTML='wrong';
+                return false;
+            }
+        }
+        //设置提交按钮时对用户名和密码框做同一验证
+        form.onsubmit=checkAll;
+        function ckeckAll(){
+            var res1=checkUsername();
+            var res2=checkPassword();
+            return res1&&res2;
+        }
+
+    </script>
+</body>
+</html>

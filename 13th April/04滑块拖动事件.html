@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: indianred;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var box=document.getElementById('box');
+        var div_x,div_y,size_x,size_y;
+        box.onmousedown=function(e){
+            e=e||window.event;
+            div_x=e.offsetX;
+            div_y=e.offsetY;
+            document.onmousemove=function(e){
+                e=e||window.event;
+                size_x=e.clientX;
+                size_y=e.clientY;
+                box.style.left=size_x-div_x+'px';
+                box.style.top=size_y-div_y+'px';
+            }
+        };
+
+        box.onmouseup=function(){
+            document.onmousemove=null;
+        };
+
+    </script>
+</body>
+</html>
